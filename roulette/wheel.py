@@ -4,7 +4,6 @@ Author: Ross Logan 2017
 """
 
 from roulette.bin import Bin
-import random
 
 class Wheel(object):
 
@@ -16,7 +15,7 @@ class Wheel(object):
         self.get(number).add(outcome)
 
     def next(self):
-        return random.choice(self.bins)
+        return self.rng.choice(self.bins)
 
     def get(self, bin):
         return self.bins[bin]
