@@ -7,3 +7,6 @@ class BinBuilder(object):
 
     def __init__(self):
         pass
+
+    def generateStraightBets(self, wheel):
+        pass

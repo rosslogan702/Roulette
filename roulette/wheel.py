@@ -11,8 +11,8 @@ class Wheel(object):
         self.bins = tuple(Bin() for i in range(38))
         self.rng = rng
 
-    def addOutcome(self, number, outcome):
-        self.get(number).add(outcome)
+    def addOutcome(self, binIndex, outcome):
+        self.get(binIndex).add(outcome)
 
     def next(self):
         return self.rng.choice(self.bins)
