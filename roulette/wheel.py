@@ -17,5 +17,5 @@ class Wheel(object):
     def next(self):
         return self.rng.choice(self.bins)
 
-    def get(self, bin):
-        return self.bins[bin]
+    def get(self, binIndex):
+        return self.bins[binIndex]
