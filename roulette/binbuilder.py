@@ -24,3 +24,15 @@ class BinBuilder(object):
     def generateNumberStraightBet(self, wheel):
         for binIndex in range(1, 37):
             wheel.addOutcome(binIndex, Outcome(str(binIndex), 35))
+
+    def generateLeftRightPairsFirstRow(self, wheel):
+        wheel.addOutcome(1, Outcome("1-2", 17))
+        wheel.addOutcome(2, Outcome("1-2", 17))
+        wheel.addOutcome(2, Outcome("2-3", 17))
+        wheel.addOutcome(3, Outcome("2-3", 17))
+
+    def generateLeftRightPairsSecondRow(self, wheel):
+        wheel.addOutcome(4, Outcome("4-5", 17))
+        wheel.addOutcome(5, Outcome("4-5", 17))
+        wheel.addOutcome(5, Outcome("5-6", 17))
+        wheel.addOutcome(6, Outcome("5-6", 17))
