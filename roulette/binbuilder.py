@@ -25,18 +25,6 @@ class BinBuilder(object):
         for binIndex in range(1, 37):
             wheel.addOutcome(binIndex, Outcome(str(binIndex), 35))
 
-    def generateLeftRightPairsFirstRow(self, wheel):
-        wheel.addOutcome(1, Outcome("1-2", 17))
-        wheel.addOutcome(2, Outcome("1-2", 17))
-        wheel.addOutcome(2, Outcome("2-3", 17))
-        wheel.addOutcome(3, Outcome("2-3", 17))
-
-    def generateLeftRightPairsSecondRow(self, wheel):
-        wheel.addOutcome(4, Outcome("4-5", 17))
-        wheel.addOutcome(5, Outcome("4-5", 17))
-        wheel.addOutcome(5, Outcome("5-6", 17))
-        wheel.addOutcome(6, Outcome("5-6", 17))
-
     def generateLeftRightPairsRows(self, wheel):
         for rowIndex in range(0, 12):
             wheel.addOutcome(rowIndex*3 + 1, Outcome(str(rowIndex*3+1) + "-" + str(rowIndex*3+2), 17))

@@ -46,22 +46,6 @@ class TestBinBuilder(TestCase):
             self.assertEqual(str(Outcome(str(binIndex), 35)), str(self.wheel.get(binIndex)),
                              "Wheel does not have correct outcome at index " + str(binIndex) + " zero bet")
 
-    def testGenerateLeftRightPairsFirstRow(self):
-        self.binBuilder.generateLeftRightPairsFirstRow(self.wheel)
-
-        self.assertEqual("1-2 (17:1)", str(self.wheel.get(1)), "Wheel does not have the correct outcomes for bin 1 left right split bets")
-        self.assertTrue("1-2 (17:1)" in str(self.wheel.get(2)), "Wheel does not have the correct outcomes for bin 2 left right split bets ")
-        self.assertTrue("2-3 (17:1)" in str(self.wheel.get(2)), "Wheel does not have the correct outcomes for bin 2 left right split bets ")
-        self.assertEqual("2-3 (17:1)", str(self.wheel.get(3)), "Wheel does not have the correct outcomes for bin 3 left right split bets")
-
-    def testGenerateLeftRightPairsSecondRow(self):
-        self.binBuilder.generateLeftRightPairsSecondRow(self.wheel)
-
-        self.assertEqual("4-5 (17:1)", str(self.wheel.get(4)), "Wheel does not have the correct outcomes for bin 4 left right split bets")
-        self.assertTrue("4-5 (17:1)" in str(self.wheel.get(5)), "Wheel does not have the correct outcomes for bin 5 left right split bets ")
-        self.assertTrue("5-6 (17:1)" in str(self.wheel.get(5)), "Wheel does not have the correct outcomes for bin 5 left right split bets ")
-        self.assertEqual("5-6 (17:1)", str(self.wheel.get(6)), "Wheel does not have the correct outcomes for bin 6 left right split bets")
-
     def testGenerateLeftRightPairs(self):
         self.binBuilder.generateLeftRightPairsRows(self.wheel)
 
