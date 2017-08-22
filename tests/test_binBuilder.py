@@ -62,4 +62,17 @@ class TestBinBuilder(TestCase):
         self.assertTrue("5-6 (17:1)" in str(self.wheel.get(5)), "Wheel does not have the correct outcomes for bin 5 left right split bets ")
         self.assertEqual("5-6 (17:1)", str(self.wheel.get(6)), "Wheel does not have the correct outcomes for bin 6 left right split bets")
 
+    def testGenerateLeftRightPairs(self):
+        self.binBuilder.generateLeftRightPairsRows(self.wheel)
+
+        for rowIndex in range(0, 12):
+            self.assertEqual(str(rowIndex*3+1) + "-" + str(rowIndex*3+2) + " (17:1)", str(self.wheel.get(rowIndex*3+1)),
+                             "Wheel does not have the correct outcomes for bin 1 left right split bets")
+            self.assertTrue(str(rowIndex*3+1) + "-" + str(rowIndex*3+2) + " (17:1)" in str(self.wheel.get(rowIndex*3+2))
+                            ,"Wheel does not have the correct outcomes for bin 2 left right split bets")
+            self.assertTrue(str(rowIndex*3+2) + "-" + str(rowIndex*3+3) + " (17:1)" in str(self.wheel.get(rowIndex*3+2))
+                            , "Wheel does not have the correct outcomes for bin 2 left right split bets")
+            self.assertEqual(str(rowIndex*3+2) + "-" + str(rowIndex*3+3) + " (17:1)", str(self.wheel.get(rowIndex*3+3))
+                             , "Wheel does not have the correct outcomes for bin 3 left right split bets")
+
 

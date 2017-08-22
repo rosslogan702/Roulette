@@ -36,3 +36,10 @@ class BinBuilder(object):
         wheel.addOutcome(5, Outcome("4-5", 17))
         wheel.addOutcome(5, Outcome("5-6", 17))
         wheel.addOutcome(6, Outcome("5-6", 17))
+
+    def generateLeftRightPairsRows(self, wheel):
+        for rowIndex in range(0, 12):
+            wheel.addOutcome(rowIndex*3 + 1, Outcome(str(rowIndex*3+1) + "-" + str(rowIndex*3+2), 17))
+            wheel.addOutcome(rowIndex*3 + 2, Outcome(str(rowIndex*3+1) + "-" + str(rowIndex*3+2), 17))
+            wheel.addOutcome(rowIndex*3 + 2, Outcome(str(rowIndex*3+2) + "-" + str(rowIndex*3+3), 17))
+            wheel.addOutcome(rowIndex*3 + 3, Outcome(str(rowIndex*3+2) + "-" + str(rowIndex*3+3), 17))
