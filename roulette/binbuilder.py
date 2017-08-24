@@ -15,6 +15,10 @@ class BinBuilder(object):
         self.generateZeroZeroStraightBet(wheel)
         self.generateNumberStraightBet(wheel)
 
+    def generateSplitBets(self, wheel):
+        self.generateLeftRightPairsRows(wheel)
+        self.generateUpDownPairsRows(wheel)
+
     def generateZeroStraightBet(self, wheel):
         wheel.addOutcome(0, Outcome("0", 35))
 
@@ -31,3 +35,8 @@ class BinBuilder(object):
             wheel.addOutcome(rowIndex*3 + 2, Outcome(str(rowIndex*3+1) + "-" + str(rowIndex*3+2), 17))
             wheel.addOutcome(rowIndex*3 + 2, Outcome(str(rowIndex*3+2) + "-" + str(rowIndex*3+3), 17))
             wheel.addOutcome(rowIndex*3 + 3, Outcome(str(rowIndex*3+2) + "-" + str(rowIndex*3+3), 17))
+
+    def generateUpDownPairsRows(self, wheel):
+        for num in range(1, 34):
+            wheel.addOutcome(num, Outcome(str(num) + "-" + str(num+3), 17))
+            wheel.addOutcome(num+3, Outcome(str(num) + "-" + str(num+3), 17))
