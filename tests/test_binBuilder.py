@@ -75,6 +75,25 @@ class TestBinBuilder(TestCase):
         self.testGenerateUpDownPairs()
         self.testGenerateLeftRightPairs()
 
+    def testGenerateStreetBets(self):
+        self.binBuilder.generateStreetBets(self.wheel)
+
+        for rowIndex in range(0, 12):
+            self.assertTrue(str(rowIndex*3+1) + "-" + str(rowIndex*3+2) + "-" + str(rowIndex*3+3) + " (11:1)" in
+                            str(self.wheel.get(rowIndex*3+1)), "Wheel does not have the correct outcomes for bin "
+                            + str(rowIndex*3+1) + " for street bets")
+            self.assertTrue(str(rowIndex*3+1) + "-" + str(rowIndex*3+2) + "-" + str(rowIndex*3+3) + " (11:1)" in
+                            str(self.wheel.get(rowIndex*3+2)), "Wheel does not have the correct outcomes for bin "
+                            + str(rowIndex*3+2) + " for street bets")
+            self.assertTrue(str(rowIndex*3+1) + "-" + str(rowIndex*3+2) + "-" + str(rowIndex*3+3) + " (11:1)" in
+                            str(self.wheel.get(rowIndex*3+2)), "Wheel does not have the correct outcomes for bin "
+                            + str(rowIndex*3+3) + " for street bets")
+
+
+
+
+    #TODO: Once all the bets are completed, still need one test to cover all possible bets that tests everything
+
 
 
 
