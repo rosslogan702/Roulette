@@ -31,27 +31,22 @@ class TestBinBuilder(TestCase):
         self.binBuilder.generateNumberStraightBet(self.wheel)
 
         for binIndex in range(1, 37):
-            self.assertEqual(str(Outcome(str(binIndex), 35)), str(self.wheel.get(binIndex)),
+            self.assertTrue(str(Outcome(str(binIndex), 35)) in str(self.wheel.get(binIndex)),
                              "Wheel does not have correct outcome at index " + str(binIndex))
 
     def testGenerateStraightBets(self):
         self.binBuilder.generateStraightBets(self.wheel)
 
-        self.assertEqual("0 (35:1)", str(self.wheel.get(0)),
-                         "Wheel does not have correct outcome added for zero bet")
-        self.assertEqual("00 (35:1)", str(self.wheel.get(37)),
-                         "Wheel does not have correct outcome added for zero zero bet")
-
-        for binIndex in range(1, 37):
-            self.assertEqual(str(Outcome(str(binIndex), 35)), str(self.wheel.get(binIndex)),
-                             "Wheel does not have correct outcome at index " + str(binIndex) + " zero bet")
+        self.testGenerateZeroStraightBet()
+        self.testGenerateZeroStraightBet()
+        self.testGenerateNumberStraightBet()
 
 
     def testGenerateLeftRightPairs(self):
         self.binBuilder.generateLeftRightPairsRows(self.wheel)
 
         for rowIndex in range(0, 12):
-            self.assertEqual(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + " (17:1)", str(
+            self.assertTrue(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + " (17:1)" in str(
                 self.wheel.get(rowIndex * 3 + 1)),"Wheel does not have the correct outcomes for bin "
                 + str(rowIndex * 3 + 1) + "left right split bets")
             self.assertTrue(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + " (17:1)" in str(
@@ -60,7 +55,7 @@ class TestBinBuilder(TestCase):
             self.assertTrue(str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3) + " (17:1)" in str(
                 self.wheel.get(rowIndex * 3 + 2)), "Wheel does not have the correct outcomes for bin " + str(
                 rowIndex * 3 + 2) + " left right split bets")
-            self.assertEqual(str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3) + " (17:1)", str(
+            self.assertTrue(str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3) + " (17:1)" in str(
                 self.wheel.get(rowIndex * 3 + 3)), "Wheel does not have the correct outcomes for bin " + str(
                 rowIndex * 3 + 3) + " left right split bets")
 
@@ -77,6 +72,9 @@ class TestBinBuilder(TestCase):
         self.binBuilder.generateLeftRightPairsRows(self.wheel)
         self.binBuilder.generateUpDownPairsRows(self.wheel)
 
-        # Need to think about the assets here as two sets of bets will now be added, the columns and the rows
-        #TODO: Generate up and down pairs test
-        #TODO: Full test for split bets
+        self.testGenerateUpDownPairs()
+        self.testGenerateLeftRightPairs()
+
+
+
+
