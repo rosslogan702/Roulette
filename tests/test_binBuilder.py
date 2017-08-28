@@ -89,10 +89,34 @@ class TestBinBuilder(TestCase):
                             str(self.wheel.get(rowIndex*3+2)), "Wheel does not have the correct outcomes for bin "
                             + str(rowIndex*3+3) + " for street bets")
 
+    def testGenerateCornerBets(self):
+        self.binBuilder.generateCornerBets(self.wheel)
+
+        for rowIndex in range(0, 11):
+            n = rowIndex*3+1
+            m = rowIndex*3+2
+
+            self.assertTrue(str(n) + "-" + str(n+1) + "-" + str(n+3) + "-" + str(n+4) + " (8:1)" in str(self.wheel.get(n)),
+                            "Wheel does not have the correct outcomes for bin " + str(n) + " for street bets")
+            self.assertTrue(str(n) + "-" + str(n+1) + "-" + str(n+3) + "-" + str(n+4) + " (8:1)" in str(self.wheel.get(n+1)),
+                            "Wheel does not have the correct outcomes for bin " + str(n+1) + " for street bets")
+            self.assertTrue(str(n) + "-" + str(n+1) + "-" + str(n+3) + "-" + str(n+4) + " (8:1)" in str(self.wheel.get(n+3)),
+                            "Wheel does not have the correct outcomes for bin " + str(n+3) + " for street bets")
+            self.assertTrue(str(n) + "-" + str(n+1) + "-" + str(n+3) + "-" + str(n+4) + " (8:1)" in str(self.wheel.get(n+4)),
+                            "Wheel does not have the correct outcomes for bin " + str(n+4) + " for street bets")
+
+            self.assertTrue(str(m) + "-" + str(m+1) + "-" + str(m+3) + "-" + str(m+4) + " (8:1)" in str(self.wheel.get(m)),
+                            "Wheel does not have the correct outcomes for bin " + str(m) + " for street bets")
+            self.assertTrue(str(m) + "-" + str(m+1) + "-" + str(m+3) + "-" + str(m+4) + " (8:1)" in str(self.wheel.get(m+1)),
+                            "Wheel does not have the correct outcomes for bin " + str(m+1) + " for street bets")
+            self.assertTrue(str(m) + "-" + str(m+1) + "-" + str(m+3) + "-" + str(m+4) + " (8:1)" in str(self.wheel.get(m+3)),
+                            "Wheel does not have the correct outcomes for bin " + str(m+3) + " for street bets")
+            self.assertTrue(str(m) + "-" + str(m+1) + "-" + str(m+3) + "-" + str(m+4) + " (8:1)" in str(self.wheel.get(m+4)),
+                            "Wheel does not have the correct outcomes for bin " + str(m+4) + " for street bets")
 
 
 
-    #TODO: Once all the bets are completed, still need one test to cover all possible bets that tests everything
+
 
 
 

@@ -52,3 +52,26 @@ class BinBuilder(object):
             wheel.addOutcome(rowIndex * 3 + 3,
                              Outcome(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3),
                                      11))
+
+    def generateCornerBets(self, wheel):
+        for rowIndex in range(0, 11):
+            colOneNum = rowIndex * 3 + 1
+            colTwoNum = rowIndex * 3 + 2
+
+            wheel.addOutcome(colOneNum, Outcome(
+                str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" + str(colOneNum + 4), 8))
+            wheel.addOutcome(colOneNum + 1, Outcome(
+                str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" + str(colOneNum + 4), 8))
+            wheel.addOutcome(colOneNum + 3, Outcome(
+                str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" + str(colOneNum + 4), 8))
+            wheel.addOutcome(colOneNum + 4, Outcome(
+                str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" + str(colOneNum + 4), 8))
+
+            wheel.addOutcome(colTwoNum, Outcome(
+                str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
+            wheel.addOutcome(colTwoNum + 1, Outcome(
+                str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
+            wheel.addOutcome(colTwoNum + 3, Outcome(
+                str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
+            wheel.addOutcome(colTwoNum + 4, Outcome(
+                str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
