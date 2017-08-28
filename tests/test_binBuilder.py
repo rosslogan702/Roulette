@@ -120,30 +120,8 @@ class TestBinBuilder(TestCase):
         for rowIndex in range(0, 11):
             colOneNum = rowIndex*3+1
 
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+1)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+2)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+3)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+4)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
-                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+5)),
-                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
-
-
-
-
-
-
-
-
-
+            for linenum in range(colOneNum, colOneNum + 6):
+                self.assertTrue(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 2) + "-" +
+                                str(colOneNum + 3) + "-" + str(colOneNum + 4) + "-" + str(colOneNum + 5) + " (5:1)" in
+                                str(self.wheel.get(linenum)), "Wheel does not have the correct outcome for bin " +
+                                str(linenum) + " for line bets")

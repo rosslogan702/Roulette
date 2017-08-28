@@ -78,22 +78,20 @@ class BinBuilder(object):
 
     def generateLineBets(self, wheel):
         for rowIndex in range(0, 11):
-            colOneNum = rowIndex*3+1
+            colOneNum = rowIndex * 3 + 1
             wheel.addOutcome(colOneNum,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
             wheel.addOutcome(colOneNum + 1,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
             wheel.addOutcome(colOneNum + 2,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
             wheel.addOutcome(colOneNum + 3,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
             wheel.addOutcome(colOneNum + 4,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
             wheel.addOutcome(colOneNum + 5,
-                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
-                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+                             self._generateLineOutcomeObject(colOneNum))
+
+    def _generateLineOutcomeObject(self, colNum):
+        return Outcome(str(colNum) + "-" + str(colNum + 1) + "-" + str(colNum + 2) + "-" +
+                       str(colNum + 3) + "-" + str(colNum + 4) + "-" + str(colNum + 5), 5)
