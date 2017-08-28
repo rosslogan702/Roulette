@@ -75,3 +75,25 @@ class BinBuilder(object):
                 str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
             wheel.addOutcome(colTwoNum + 4, Outcome(
                 str(colTwoNum) + "-" + str(colTwoNum + 1) + "-" + str(colTwoNum + 3) + "-" + str(colTwoNum + 4), 8))
+
+    def generateLineBets(self, wheel):
+        for rowIndex in range(0, 11):
+            colOneNum = rowIndex*3+1
+            wheel.addOutcome(colOneNum,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+            wheel.addOutcome(colOneNum + 1,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+            wheel.addOutcome(colOneNum + 2,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+            wheel.addOutcome(colOneNum + 3,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+            wheel.addOutcome(colOneNum + 4,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))
+            wheel.addOutcome(colOneNum + 5,
+                             Outcome(str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" +
+                                     str(colOneNum + 4) + str(colOneNum + 5), 5))

@@ -114,6 +114,32 @@ class TestBinBuilder(TestCase):
             self.assertTrue(str(m) + "-" + str(m+1) + "-" + str(m+3) + "-" + str(m+4) + " (8:1)" in str(self.wheel.get(m+4)),
                             "Wheel does not have the correct outcomes for bin " + str(m+4) + " for street bets")
 
+    def testGenerateLineBets(self):
+        self.binBuilder.generateLineBets(self.wheel)
+
+        for rowIndex in range(0, 11):
+            colOneNum = rowIndex*3+1
+
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+1)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+2)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+3)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+4)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+            self.assertTrue(str(colOneNum) + "-" + str(colOneNum+1) + "-" + str(colOneNum+3) + "-" +
+                            str(colOneNum+4) + str(colOneNum+5) + " (5:1)" in str(self.wheel.get(colOneNum+5)),
+                            "Wheel does not have the correct outcome for bin " + str(colOneNum) + " for line bets")
+
+
 
 
 
