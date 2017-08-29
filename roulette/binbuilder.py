@@ -78,3 +78,9 @@ class BinBuilder(object):
     def _generateLineOutcomeObject(self, colNum):
         return Outcome(str(colNum) + "-" + str(colNum + 1) + "-" + str(colNum + 2) + "-" +
                        str(colNum + 3) + "-" + str(colNum + 4) + "-" + str(colNum + 5), 5)
+
+    def generateDozenBets(self, wheel):
+        for dozen in range(0, 3):
+            dozenOutcome = Outcome("Dozen-" + str(dozen+1), 2)
+            for dozenNum in range(0, 12):
+                wheel.addOutcome(12*dozen + dozenNum + 1, dozenOutcome)

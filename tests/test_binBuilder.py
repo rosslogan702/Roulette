@@ -126,3 +126,11 @@ class TestBinBuilder(TestCase):
                                 str(colOneNum + 3) + "-" + str(colOneNum + 4) + "-" + str(colOneNum + 5) + " (5:1)" in
                                 str(self.wheel.get(linenum)), "Wheel does not have the correct outcome for bin " +
                                 str(linenum) + " for line bets")
+
+    def testGenerateDozenBet(self):
+        self.binBuilder.generateDozenBets(self.wheel)
+
+        for d in range(0, 3):
+            for num in range(0, 12):
+                self.assertTrue("Dozen-" + str(d+1) + " (2:1)" in str(self.wheel.get(12*d + num + 1)))
+
