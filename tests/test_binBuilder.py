@@ -41,23 +41,27 @@ class TestBinBuilder(TestCase):
         self.testGenerateZeroStraightBet()
         self.testGenerateNumberStraightBet()
 
-
     def testGenerateLeftRightPairs(self):
         self.binBuilder.generateLeftRightPairsRows(self.wheel)
 
         for rowIndex in range(0, 12):
-            self.assertTrue(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + " (17:1)" in str(
-                self.wheel.get(rowIndex * 3 + 1)),"Wheel does not have the correct outcomes for bin "
-                + str(rowIndex * 3 + 1) + "left right split bets")
-            self.assertTrue(str(rowIndex * 3 + 1) + "-" + str(rowIndex * 3 + 2) + " (17:1)" in str(
+            firstColOutcome = self._generateLeftRightOutcome(rowIndex, 1, 2)
+            secondColOutcome = self._generateLeftRightOutcome(rowIndex, 2, 3)
+            self.assertTrue(firstColOutcome in str(
+                self.wheel.get(rowIndex * 3 + 1)), "Wheel does not have the correct outcomes for bin "
+                            + str(rowIndex * 3 + 1) + "left right split bets")
+            self.assertTrue(firstColOutcome in str(
                 self.wheel.get(rowIndex * 3 + 2)), "Wheel does not have the correct outcomes for bin " + str(
                 rowIndex * 3 + 2) + " left right split bets")
-            self.assertTrue(str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3) + " (17:1)" in str(
+            self.assertTrue(secondColOutcome in str(
                 self.wheel.get(rowIndex * 3 + 2)), "Wheel does not have the correct outcomes for bin " + str(
                 rowIndex * 3 + 2) + " left right split bets")
-            self.assertTrue(str(rowIndex * 3 + 2) + "-" + str(rowIndex * 3 + 3) + " (17:1)" in str(
+            self.assertTrue(secondColOutcome in str(
                 self.wheel.get(rowIndex * 3 + 3)), "Wheel does not have the correct outcomes for bin " + str(
                 rowIndex * 3 + 3) + " left right split bets")
+
+    def _generateLeftRightOutcome(self, rowIndex, leftCol, rightCol):
+        return str(rowIndex * 3 + leftCol) + "-" + str(rowIndex * 3 + rightCol) + " (17:1)"
 
     def testGenerateUpDownPairs(self):
         self.binBuilder.generateUpDownPairsRows(self.wheel)
