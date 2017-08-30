@@ -5,22 +5,24 @@ Author: Ross Logan 2017
 
 from roulette.outcome import Outcome
 
-
-# TODO: Couple of remaining bin algorithms still to be implemented: Dozen bets, column bets & even money
-# TODO: Add on CI every time there is a check in
-
 class BinBuilder(object):
     def __init__(self):
         pass
+
+    def buildBins(self, wheel):
+        self.generateStraightBets(wheel)
+        self.generateSplitBets(wheel)
+        self.generateStreetBets(wheel)
+        self.generateCornerBets(wheel)
+        self.generateLineBets(wheel)
+        self.generateDozenBets(wheel)
+        self.generateColumnBets(wheel)
+        self.generateEvenMoneyBets(wheel)
 
     def generateStraightBets(self, wheel):
         self.generateZeroStraightBet(wheel)
         self.generateZeroZeroStraightBet(wheel)
         self.generateNumberStraightBet(wheel)
-
-    def generateSplitBets(self, wheel):
-        self.generateLeftRightPairsRows(wheel)
-        self.generateUpDownPairsRows(wheel)
 
     def generateZeroStraightBet(self, wheel):
         wheel.addOutcome(0, Outcome("0", 35))
@@ -31,6 +33,10 @@ class BinBuilder(object):
     def generateNumberStraightBet(self, wheel):
         for binIndex in range(1, 37):
             wheel.addOutcome(binIndex, Outcome(str(binIndex), 35))
+
+    def generateSplitBets(self, wheel):
+        self.generateLeftRightPairsRows(wheel)
+        self.generateUpDownPairsRows(wheel)
 
     def generateLeftRightPairsRows(self, wheel):
         for rowIndex in range(0, 12):
@@ -58,13 +64,13 @@ class BinBuilder(object):
         for rowIndex in range(0, 11):
             colOneNum = rowIndex * 3 + 1
             colTwoNum = rowIndex * 3 + 2
-            colOneOutcome = self.generateCornerBetOutcome(colOneNum)
-            colTwoOutcome = self.generateCornerBetOutcome(colTwoNum)
+            colOneOutcome = self._generateCornerBetOutcome(colOneNum)
+            colTwoOutcome = self._generateCornerBetOutcome(colTwoNum)
             for colNum in range(0, 5):
                 wheel.addOutcome(colOneNum + colNum, colOneOutcome)
                 wheel.addOutcome(colTwoNum + colNum, colTwoOutcome)
 
-    def generateCornerBetOutcome(self, colOneNum):
+    def _generateCornerBetOutcome(self, colOneNum):
         return Outcome(
             str(colOneNum) + "-" + str(colOneNum + 1) + "-" + str(colOneNum + 3) + "-" + str(colOneNum + 4), 8)
 
