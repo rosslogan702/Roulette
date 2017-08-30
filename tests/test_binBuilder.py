@@ -134,3 +134,39 @@ class TestBinBuilder(TestCase):
             for num in range(0, 12):
                 self.assertTrue("Dozen-" + str(d+1) + " (2:1)" in str(self.wheel.get(12*d + num + 1)))
 
+    def testGenerateColumnBets(self):
+        self.binBuilder.generateColumnBets(self.wheel)
+
+        for col in range(0, 3):
+            for row in range(0, 12):
+                self.assertTrue("Col-" + str(col+1) + " (2:1)" in str(self.wheel.get(3*row + col + 1)))
+
+    def testGenerateEvenMoneyBets(self):
+        redOutcome = Outcome("RED", 1)
+        blackOutcome = Outcome("BLACK", 1)
+        evenOutcome = Outcome("EVEN", 1)
+        oddOutcome = Outcome("ODD", 1)
+        highOutcome = Outcome("HIGH", 1)
+        lowOutcome = Outcome("LOW", 1)
+        redNums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+        self.binBuilder.generateEvenMoneyBets(self.wheel)
+
+        for num in range(1, 37):
+            if num < 19:
+                self.assertTrue(str(lowOutcome) in str(self.wheel.get(num)))
+            if num > 19:
+                self.assertTrue(str(highOutcome) in str(self.wheel.get(num)))
+            if num%2 == 0:
+                self.assertTrue(str(evenOutcome) in str(self.wheel.get(num)))
+            if num%2 != 0:
+                self.assertTrue(str(oddOutcome) in str(self.wheel.get(num)))
+            if num in redNums:
+                self.assertTrue(str(redOutcome) in str(self.wheel.get(num)))
+            if num not in redNums:
+                self.assertTrue(str(blackOutcome) in str(self.wheel.get(num)))
+
+
+
+
+

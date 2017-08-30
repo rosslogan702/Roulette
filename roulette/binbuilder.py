@@ -84,3 +84,32 @@ class BinBuilder(object):
             dozenOutcome = Outcome("Dozen-" + str(dozen+1), 2)
             for dozenNum in range(0, 12):
                 wheel.addOutcome(12*dozen + dozenNum + 1, dozenOutcome)
+
+    def generateColumnBets(self, wheel):
+        for col in range(0, 3):
+            colOutcome = Outcome("Col-" + str(col+1), 2)
+            for row in range(0, 12):
+                wheel.addOutcome(3*row + col + 1, colOutcome)
+
+    def generateEvenMoneyBets(self, wheel):
+        redOutcome = Outcome("RED", 1)
+        blackOutcome = Outcome("BLACK", 1)
+        evenOutcome = Outcome("EVEN", 1)
+        oddOutcome = Outcome("ODD", 1)
+        highOutcome = Outcome("HIGH", 1)
+        lowOutcome = Outcome("LOW", 1)
+        redNums = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
+
+        for num in range(1, 37):
+            if num < 19:
+                wheel.addOutcome(num, lowOutcome)
+            if num > 19:
+                wheel.addOutcome(num, highOutcome)
+            if num%2 == 0:
+                wheel.addOutcome(num, evenOutcome)
+            if num%2 != 0:
+                wheel.addOutcome(num, oddOutcome)
+            if num in redNums:
+                wheel.addOutcome(num, redOutcome)
+            if num not in redNums:
+                wheel.addOutcome(num, blackOutcome)
