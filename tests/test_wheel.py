@@ -23,4 +23,14 @@ class TestWheel(TestCase):
         self.assertIsInstance(binOne, Bin)
         self.assertIsInstance(binTwo, Bin)
 
+    def testOutcomesAddedToMap(self):
+        self.wheel.addOutcome(0, self.outcomeOne)
+        self.wheel.addOutcome(37, Outcome("00", 35))
+
+        self.assertEqual(self.outcomeOne, self.wheel.getOutcome("0"))
+        self.assertEqual(Outcome("00", 35), self.wheel.getOutcome("00"))
+
+
+
+
 
