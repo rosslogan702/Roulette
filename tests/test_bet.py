@@ -26,3 +26,6 @@ class TestBet(TestCase):
         self.assertEqual(1, self.betTwo.loseAmount())
         self.assertEqual(1, self.betThree.loseAmount())
         self.assertEqual(5, self.betFour.loseAmount())
+
+    def testToString(self):
+        self.assertEqual("5 on test4", self.betFour.__str__(), "String representation not as expected")

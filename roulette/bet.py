@@ -15,4 +15,7 @@ class Bet(object):
     def loseAmount(self):
         return self.amount
 
+    def __str__(self):
+        return str(self.amount) + " on " + self.outcome.name
+
 
