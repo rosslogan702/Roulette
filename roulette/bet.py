@@ -10,9 +10,9 @@ class Bet(object):
         self.outcome = outcome
 
     def winAmount(self):
-        pass
+        return self.outcome.winAmount(self.amount) + self.amount
 
     def loseAmount(self):
-        pass
+        return self.amount
 
 
