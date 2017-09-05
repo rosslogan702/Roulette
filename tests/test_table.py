@@ -2,28 +2,29 @@ from unittest import TestCase
 from roulette.table import Table
 from roulette.bet import Bet
 from roulette.outcome import Outcome
+from exceptions.invalidbet import InvalidBetException
 
 class TestTable(TestCase):
 
     def setUp(self):
-        pass
+        self.table = Table()
+        self.betOne = Bet(1, Outcome("test1", 4))
+        self.betTwo = Bet(2, Outcome("test2", 3))
+        self.betThree = Bet(12, Outcome("test3", 4))
 
     def testIsValid(self):
-        # To test this, what we need to do is start of with an empty table
-        # Place a few bets which should be accepted and below the table limit
-        # Then loop through and place a bet which would bring the table over the limit
-        # at this point ensure that the bet is refused and returned as not valid
+        self.assertTrue(self.table.isValid(self.betOne))
+        self.assertTrue(self.table.isValid(self.betTwo))
+        self.assertFalse(self.table.isValid(self.betThree))
 
-        # Assumption, that is being made here is that the process of "adding" up all the bets
-        # is totalling the win amounts possible from each bet and then using that figure as the
-        # threshold to decide whether or not a bet is able to be placed
+    def testPlaceBetValid(self):
+        self.table.placeBet(self.betOne)
+        self.table.placeBet(self.betTwo)
 
-        table = Table()
-        betOne = Bet(1, Outcome("test1", 4))
-        print(betOne.winAmount())
-        betTwo = Bet(2, Outcome("test2", 3))
-        print(betTwo.winAmount())
-        betThree = Bet(4, Outcome("test3", 5))
-        print(betThree.winAmount())
+        self.assertIn(self.betOne, self.table.bets, "Bet one has not been added to table bets")
+        self.assertIn(self.betTwo, self.table.bets, "Bet two has not been added to table bets")
+
+    def testPlaceBetInvalid(self):
+        self.assertRaises(InvalidBetException, lambda: self.table.placeBet(self.betThree))
 
 
