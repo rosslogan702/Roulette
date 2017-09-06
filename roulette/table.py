@@ -25,7 +25,14 @@ class Table(object):
             raise InvalidBetException()
 
     def __iter__(self):
-        pass
+        self._it = iter(self.bets)
+        return self
+
+    def __next__(self):
+        return next(self._it)
 
     def __str__(self):
-        pass
+        bets = ""
+        for bet in self.bets:
+            bets += str(bet) + " "
+        return bets
