@@ -1,7 +1,7 @@
 """
-Description: Passenger 57 class that always bets on black, this will be replaced in future with Player class
-             No Unit Testing will be added for this, as it is going to be replaced in the future
-Author: Ross Logan 2017
+Description:    Passenger 57 class that always bets on black, this will be replaced in future with Player class
+                No Unit Testing will be added for this, as it is going to be replaced in the future
+Author:         Ross Logan 2017
 """
 from roulette.outcome import Outcome
 from roulette.bet import Bet
