@@ -1,8 +1,8 @@
 from unittest import TestCase
 from roulette.outcome import Outcome
 from roulette.bin import Bin
-from roulette.wheel import Wheel
-from random import randint
+from roulette.wheel import createWheel
+from roulette.nonrandom import NonRandom
 
 class TestWheel(TestCase):
 
@@ -13,8 +13,8 @@ class TestWheel(TestCase):
         self.outcomeTwo = Outcome("00-0-1-2-3", 6)
         self.binOne = Bin(self.sampleOutcomeOne, self.sampleOutcomeTwo)
         self.binTwo = Bin(self.outcomeOne, self.outcomeTwo)
-        self.rng = randint
-        self.wheel = Wheel(self.rng)
+        self.rng = NonRandom()
+        self.wheel = createWheel(self.rng)
 
     def test_binsCanBeAddedToWheel(self):
         binOne = self.wheel.get(0)
@@ -24,9 +24,6 @@ class TestWheel(TestCase):
         self.assertIsInstance(binTwo, Bin)
 
     def testOutcomesAddedToMap(self):
-        self.wheel.addOutcome(0, self.outcomeOne)
-        self.wheel.addOutcome(37, Outcome("00", 35))
-
         self.assertEqual(self.outcomeOne, self.wheel.getOutcome("0"))
         self.assertEqual(Outcome("00", 35), self.wheel.getOutcome("00"))
 

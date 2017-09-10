@@ -7,10 +7,7 @@ import random
 class NonRandom(random.Random):
 
     def __init__(self):
-        self.value = 0
+        pass
 
     def setSeed(self, value):
-        self.value = value
-
-    def choice(self, seq):
-        return seq[self.value]
+        self.seed(value)
