@@ -14,6 +14,7 @@ class TestWheel(TestCase):
         self.binOne = Bin(self.sampleOutcomeOne, self.sampleOutcomeTwo)
         self.binTwo = Bin(self.outcomeOne, self.outcomeTwo)
         self.rng = NonRandom()
+        self.rng.setSeed(3)
         self.wheel = createWheel(self.rng)
 
     def test_binsCanBeAddedToWheel(self):
@@ -25,7 +26,15 @@ class TestWheel(TestCase):
 
     def testOutcomesAddedToMap(self):
         self.assertEqual(self.outcomeOne, self.wheel.getOutcome("0"))
+        self.assertEqual(self.outcomeTwo, self.wheel.getOutcome("00-0-1-2-3"))
         self.assertEqual(Outcome("00", 35), self.wheel.getOutcome("00"))
+
+    def testSpinWheelUsingNonRandom(self):
+        print(self.wheel.next())
+        print(self.wheel.next())
+        print(self.wheel.next())
+        print(self.wheel.next())
+        print(self.wheel.next())
 
 
 

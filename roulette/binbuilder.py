@@ -26,7 +26,7 @@ class BinBuilder(object):
 
     def generateZeroStraightBet(self, wheel):
         wheel.addOutcome(0, Outcome("0", 35))
-        wheel.addOutcome(0, Outcome("0-00-1-2-3", 6))
+        wheel.addOutcome(0, Outcome("00-0-1-2-3", 6))
 
     def generateZeroZeroStraightBet(self, wheel):
         wheel.addOutcome(37, Outcome("00", 35))
