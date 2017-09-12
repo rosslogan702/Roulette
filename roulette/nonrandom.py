@@ -6,13 +6,10 @@ import random
 
 class NonRandom(random.Random):
 
-    def __init__(self, values):
-        self.values = values
-        self._index = 0
+    def __init__(self):
+        pass
 
-    def choice(self, seq):
-        randIndex = self.values[self._index]
-        self._index += 1
-        return seq[randIndex]
+    def setSeed(self, seed):
+        self.seed(seed)
 
 
