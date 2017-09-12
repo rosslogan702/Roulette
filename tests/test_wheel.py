@@ -30,11 +30,12 @@ class TestWheel(TestCase):
         self.assertEqual(Outcome("00", 35), self.wheel.getOutcome("00"))
 
     def testSpinWheelUsingNonRandom(self):
-        print(self.wheel.next())
-        print(self.wheel.next())
-        print(self.wheel.next())
-        print(self.wheel.next())
-        print(self.wheel.next())
+        bin = self.wheel.next()
+
+        self.assertIn(Outcome("15", 35), bin.outcomes)
+        self.assertIn(Outcome("LOW", 1), bin.outcomes)
+        self.assertIn(Outcome("BLACK", 1), bin.outcomes)
+        self.assertIn(Outcome("ODD", 1), bin.outcomes)
 
 
 
