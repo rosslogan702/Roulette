@@ -10,7 +10,7 @@ from roulette.roulettegame import RouletteGame
 
 class DemoRunner(object):
 
-    def __iter__(self):
+    def __init__(self):
         self.wheel = Wheel(NonRandom())
         self.table = Table()
         self.player = PassengerFiftySeven(self.table)

@@ -11,6 +11,7 @@ class PassengerFiftySeven(object):
     def __init__(self, table):
         self.table = table
         self.black = Outcome("BLACK", 1)
+        self.playerWon = False
 
     def placeBets(self):
         bet = Bet(2, self.black)
@@ -18,8 +19,13 @@ class PassengerFiftySeven(object):
 
     def win(self, bet):
         print("The following bet won: " + str(bet))
+        self.playerWon = True
 
     def lose(self, bet):
         print("The following bet lost: " + str(bet))
+        self.playerWon = False
+
+    def playerWon(self):
+        return self.playerWon
 
 

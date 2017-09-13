@@ -10,11 +10,13 @@ class RouletteGame(object):
         self.table = table
 
     def cycle(self, player):
+
         player.placeBets()
         nextWinningBin = self.wheel.next()
 
         for bet in self.table.bets:
             if bet.outcome in nextWinningBin.outcomes:
                 player.win(bet)
-            player.lose(bet)
+            else:
+                player.lose(bet)
 
