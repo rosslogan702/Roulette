@@ -5,21 +5,24 @@ Author:         Ross Logan 2017
 """
 from roulette.outcome import Outcome
 from roulette.bet import Bet
+from roulette.player import Player
 
-class PassengerFiftySeven(object):
+class PassengerFiftySeven(Player):
 
     def __init__(self, table):
-        self.table = table
         self.black = Outcome("BLACK", 1)
         self.playerWon = False
+        super().__init__(table)
 
     def placeBets(self):
         bet = Bet(2, self.black)
         self.table.placeBet(bet)
+        self.stake -= bet.amount
 
     def win(self, bet):
         print("The following bet won: " + str(bet))
         self.playerWon = True
+        self.stake += bet.winAmount()
 
     def lose(self, bet):
         print("The following bet lost: " + str(bet))
