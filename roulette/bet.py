@@ -18,4 +18,18 @@ class Bet(object):
     def __str__(self):
         return str(self.amount) + " on " + self.outcome.name
 
+    def __eq__(self, bet):
+         if self.amount == bet.amount and self.outcome.__eq__(bet.outcome):
+             return True
+         return False
+
+    def __ne__(self, bet):
+        if self.amount != bet.amount or self.out.__ne__(bet.outcome):
+            return True
+        return False
+
+    def __hash__(self) -> int:
+        return super().__hash__()
+
+
 

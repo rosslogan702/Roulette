@@ -4,21 +4,30 @@ Author: Ross Logan 2017
 """
 
 from roulette.player import Player
+from roulette.bet import Bet
+from roulette.outcome import Outcome
 from math import pow
 
 
 class Martingale(Player):
 
-    def __init__(self):
+    def __init__(self, table):
         self.lossCount = 0
         self.betMultiple = pow(2, self.lossCount)
+        super().__init__(table)
 
     def placeBets(self):
-        pass
+        bet = Bet(self.betMultiple, Outcome("BLACK", 1))
+        self.table.placeBet(bet)
+        self.stake -= bet.amount
 
     def win(self, bet):
-        pass
+        super().win(bet)
+        self.lossCount = 0
+        self.betMultiple = 1
 
     def lose(self, bet):
-        pass
+        super().lose(bet)
+        self.lossCount +=1
+        self.betMultiple *= 2
 

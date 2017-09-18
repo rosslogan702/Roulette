@@ -20,7 +20,7 @@ class Player(ABC):
         pass
 
     def win(self, bet):
-        pass
+        self.stake += bet.winAmount()
 
     def lose(self, bet):
         pass
