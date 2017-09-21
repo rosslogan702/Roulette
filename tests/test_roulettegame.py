@@ -4,6 +4,7 @@ from roulette.table import Table
 from roulette.nonrandom import NonRandom
 from roulette.passenger57 import PassengerFiftySeven
 from roulette.wheel import createWheel
+from roulette.martingale import Martingale
 
 class TestRouletteGame(TestCase):
 
@@ -14,6 +15,7 @@ class TestRouletteGame(TestCase):
         self.table = Table()
         self.player = PassengerFiftySeven(self.table)
         self.game = RouletteGame(self.wheel, self.table)
+        self.martingalePlayer = Martingale(self.table)
 
     def testSingleGameCycle(self):
         self.game.cycle(self.player)
@@ -29,6 +31,18 @@ class TestRouletteGame(TestCase):
         self.assertEqual(True, betsWon[0])
         self.assertEqual(False, betsWon[1])
         self.assertEqual(False, betsWon[2])
+
+    def testThreeGameCycleMartingale(self):
+        betsWon = []
+        for spin in range(0, 3):
+            self.game.cycle(self.martingalePlayer)
+            betsWon.append(self.martingalePlayer.playerWon)
+
+        self.assertEqual(True, betsWon[0])
+        self.assertEqual(False, betsWon[1])
+        self.assertEqual(False, betsWon[2])
+
+
 
 
 

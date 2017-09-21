@@ -11,9 +11,10 @@ class Player(ABC):
         self.stake = 0
         self.roundsToGo = 0
         self.table = table
+        self.stillPlaying = True
 
     def playing(self):
-        return True
+        return self.stillPlaying
 
     @abstractmethod
     def placeBets(self):
