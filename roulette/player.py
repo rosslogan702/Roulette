@@ -12,6 +12,7 @@ class Player(ABC):
         self.roundsToGo = 0
         self.table = table
         self.stillPlaying = True
+        self.playerWon = False
 
     def playing(self):
         return self.stillPlaying

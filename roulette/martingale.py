@@ -14,7 +14,6 @@ class Martingale(Player):
     def __init__(self, table):
         self.lossCount = 0
         self.betMultiple = pow(2, self.lossCount)
-        self.playerWon = False
         super().__init__(table)
 
     def placeBets(self):

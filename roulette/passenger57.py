@@ -11,7 +11,6 @@ class PassengerFiftySeven(Player):
 
     def __init__(self, table):
         self.black = Outcome("BLACK", 1)
-        self.playerWon = False
         super().__init__(table)
 
     def placeBets(self):
