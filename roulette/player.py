@@ -17,6 +17,12 @@ class Player(ABC):
     def playing(self):
         return self.stillPlaying
 
+    def setRounds(self, rounds):
+        self.roundsToGo = rounds
+
+    def setStake(self, stake):
+        self.stake = stake
+
     @abstractmethod
     def placeBets(self):
         pass
