@@ -42,3 +42,32 @@ class TestMartingale(TestCase):
 
         self.assertEqual(1, self.martingale.lossCount)
         self.assertEqual(2, self.martingale.betMultiple)
+
+    def testNoRoundsLeftPlaying(self):
+        self.martingale.setRounds(0)
+        self.assertFalse(self.martingale.checkRoundsToPlay())
+        self.assertFalse(self.martingale.playing())
+
+    def testRoundsLeftToPlay(self):
+        self.martingale.setRounds(10)
+        self.assertTrue(self.martingale.checkRoundsToPlay())
+        self.assertTrue(self.martingale.playing())
+
+    def testCheckCantBetPlayMoreThanStake(self):
+        bet = Bet(1.0, Outcome("BLACK", 1))
+        self.martingale.setStake(0)
+        self.assertFalse(self.martingale.checkCanBetPlay(bet))
+
+    def testCheckCantBetMoreThanTableLimit(self):
+        bet = Bet(20.0, Outcome("BLACK", 1))
+        self.assertFalse(self.martingale.checkCanBetPlay(bet))
+
+    def testCheckCanBet(self):
+        bet = Bet(4.0, Outcome("BLACK", 1))
+        self.assertTrue(self.martingale.checkCanBetPlay(bet))
+
+    def testCheckUserWantsToPlay(self):
+        self.assertTrue(self.martingale.checkUserWantsToPlay())
+
+    def testCheckUserDoesNotWantToPlay(self):
+        self.assertFalse(self.martingale.checkUserWantsToPlay(False))
