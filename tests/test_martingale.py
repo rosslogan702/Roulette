@@ -13,6 +13,8 @@ class TestMartingale(TestCase):
     def setUp(self):
         self.table = Table()
         self.martingale = Martingale(self.table)
+        self.martingale.setRounds(10)
+        self.martingale.setStake(100)
 
     def testMartingaleCanPlaceBetsOnTable(self):
         bet = Bet(1.0, Outcome("BLACK", 1))
@@ -22,11 +24,12 @@ class TestMartingale(TestCase):
 
     def testMartingaleWin(self):
         bet = Bet(1.0, Outcome("BLACK", 1))
+        initialStake = self.martingale.stake - bet.amount
 
         self.martingale.placeBets()
         self.martingale.win(bet)
 
-        winAmount = bet.winAmount() - self.martingale.stake
+        winAmount = bet.winAmount() + initialStake
         self.assertEqual(0, self.martingale.lossCount)
         self.assertEqual(1, self.martingale.betMultiple)
         self.assertEqual(winAmount, self.martingale.stake)
